@@ -1,11 +1,17 @@
 Feature: Automatizacion carrefour
 
-    @demi
+    @listadeprecios
     Scenario: Obtener lista de precios
         Given Ingreso a la pagina https://www.carrefour.com.ar/
-        When Busco el producto yerba union suave 1kg y obtengo el precio
-        And Busco el producto harina integral pureza 1 kg y obtengo el precio
-        And Busco el producto jabon dove y obtengo el precio
-        And Busco el producto arvejas y obtengo el precio
-        And Genero un reporte con los datos
-        Then Guardo el trace en la carpeta logs
+        When Busco los siguientes productos y obtengo los precios:
+            | Producto                           |
+            | yerba union suave 1kg              |
+            | harina integral pureza 1 kg        |
+            | jabon dove                         |
+            | arvejas                            |
+            | te taragui x25                     |
+            | Queso cremoso horma x kg          |
+            | mayonesa hellmann's 475            |
+            | arroz integral ala 1kg             |
+            | lomitos de atun carrefour          |
+        Then Genero un reporte con los datos
