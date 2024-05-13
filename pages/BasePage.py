@@ -21,7 +21,7 @@ class BasePage:
         self.context.page.keyboard.press('Enter')
 
     def closePopUp(self):
-        self.context.page.evaluate("document.elementFromPoint(150, 30).click()")
+        self.context.page.mouse.click(150, 30)
 
     def selectFirstProduct(self):
         self.context.page.click(self.productItem)
