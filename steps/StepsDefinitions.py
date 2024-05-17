@@ -1,6 +1,7 @@
 from playwright.sync_api import sync_playwright, expect
 from behave import Given, When, Then, Step
 from pages.BasePage import BasePage
+from mailing.smtp_service import send_mail_to_address
 import time
 
 website = None
@@ -32,6 +33,10 @@ def searchProducts(context):
         listaPrecios.append(str(precio))
         time.sleep(1)
 
-@Then("Genero un reporte con los datos")
-def generateReport(context):
+@Step("Genero un reporte con los datos")
+def genero_un_reporte_con_los_datos(context):
     website.createReport(listaProductos, listaPrecios)
+
+@Then("Envio un reporte por mail")
+def envio_un_reporte_al_mail(context):
+    send_mail_to_address("auterigustavo@gmail.com")

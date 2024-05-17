@@ -14,4 +14,5 @@ Feature: Automatizacion carrefour
             | mayonesa hellmann's 475            |
             | arroz integral ala 1kg             |
             | lomitos de atun carrefour          |
-        Then Genero un reporte con los datos
+        And Genero un reporte con los datos
+        Then Envio un reporte por mail
