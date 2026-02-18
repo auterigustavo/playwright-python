@@ -1,18 +1,8 @@
-Feature: Automatizacion carrefour
+Feature: Prueba DemoQa
 
-    @listadeprecios
-    Scenario: Obtener lista de precios
-        Given Ingreso a la pagina https://www.carrefour.com.ar/
-        When Busco los siguientes productos y obtengo los precios:
-            | Producto                           |
-            | yerba union suave 1kg              |
-            | harina integral pureza 1 kg        |
-            | jabon dove                         |
-            | arvejas                            |
-            | te taragui x25                     |
-            | Queso cremoso horma x kg          |
-            | mayonesa hellmann's 475            |
-            | arroz integral ala 1kg             |
-            | lomitos de atun carrefour          |
-        And Genero un reporte con los datos
-        Then Envio un reporte por mail
+    @prueba
+    Scenario: Ingresar datos en un formulario
+        Given Ingreso a la pagina https://demoqa.com/text-box
+        When Lleno los campos presentados
+        And Hago click en submit
+        Then Verifico que el mail gauteri@mail.com coincida

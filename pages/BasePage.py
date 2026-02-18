@@ -1,48 +1,16 @@
 from playwright.sync_api import expect
-from datetime import datetime
+
+# Modelado basico para utilizar en todas las paginas. Define metodos generales para trabajar en cualquier web
 
 class BasePage:
-    def __init__(self, context):
-        self.context = context
-        self.searchField = "//input[starts-with(@id, 'downshift-') and contains(@id, '-input')]"
-        self.cookiesButton = "//button[@id='onetrust-accept-btn-handler']"
-        self.productItem = "//span[contains(text(),'$')]"
-        self.priceItem = "//span[@class='valtech-carrefourar-product-price-0-x-currencyFraction']/.."
-        self.productDescription = "//div/h1/span/../../../../.."
+    def __init__(self, page):
+        self.page = page
 
-    def acceptCookies(self):
-        self.context.page.click(self.cookiesButton)
+    def click(self, selector):
+        self.page.locator(selector).click()
 
-    def clickSearchField(self):
-        self.context.page.click(self.searchField)
-
-    def searchProduct(self, text):
-        self.context.page.fill(self.searchField,text)
-        self.context.page.keyboard.press('Enter')
-
-    def closePopUp(self):
-        self.context.page.mouse.click(150, 30)
-
-    def selectFirstProduct(self):
-        self.context.page.click(self.productItem)
-
-    def getProductDescription(self):
-        product_description = self.context.page.query_selector(self.productDescription)
-        description = product_description.inner_text()
-        return description
-
-    def getProductPrice(self):
-        price_element = self.context.page.query_selector(self.priceItem)
-        price = price_element.inner_text()
-        return price
+    def fill(self, selector, text):
+        self.page.locator(selector).fill(text)
     
-    def createReport(self, l1, l2):
-        extention = ".txt"
-        date = datetime.now()
-        date = str(date).replace(":", "")
-        date = str(date).replace(".", "")
-        date = str(date).replace(" ", "")
-        archive_name = str(date)+extention
-        report = open('reports/'+archive_name, 'x')
-        for prod,pre in zip(l1,l2):
-            report.write(prod + ": " + pre + '\n')
+    def wait_for_element(self, selector):
+        self.page.locator(selector).wait_for(state="visible")

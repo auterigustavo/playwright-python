@@ -7,6 +7,11 @@ def before_all(context):
     context.browser_context.tracing.start(screenshots=True, snapshots=True, sources=True)
 
 def after_all(context):
-    context.browser_context.tracing.stop(path='logs/trace.zip')
-    context.browser.close()
-    context.playwright.stop()
+    if hasattr(context, "browser_context"):
+        context.browser_context.tracing.stop(path='logs/trace.zip')
+    
+    if hasattr(context, "browser"):
+        context.browser.close()
+    
+    if hasattr(context, "playwright"):
+        context.playwright.stop()
