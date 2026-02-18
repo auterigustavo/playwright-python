@@ -1,18 +1,15 @@
-<h1>Playwright / Python Test</h1>
+# Framework de pruebas basado en Playwright con Python
 
-<p>Este desarrollo es un test automatizado que ingresa a la pagina de un supermercado y devuelve un txt con una lista de precios de los items buscados</p>
+<p>Permite escribir tests automatizados utilizado el Page Object Model. Se adjunta en el proyecto un archivo pdf que explica el funcionamiento del codigo y como trabajar en el mismo.</p>
 
-Para funcionar requiere de las siguientes dependencias:
+**Para resolver dependencias y puesta en funcionamiento:**
 
-<ul>
-<li>pip install playwright --> playwright install</li>
-<li>pip install behave</li>
-</ul>
+*Primero crear un entorno virtual con venv y activarlo*
+
+*pip install -r requirements.txt*
 
 <p>Behave sera el encargado de interpretar el feature file y ejecutar los tests</p>
 
-<ul>
 Documentacion:
-<li>https://behave.readthedocs.io/en/latest/</li>
-<li>https://playwright.dev/python/docs/intro</li>
-</ul>
+* https://behave.readthedocs.io/en/latest/
+* https://playwright.dev/python/docs/intro
