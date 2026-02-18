@@ -25,5 +25,4 @@ def send_form(context):
 
 @Then("Verifico que el mail {email} coincida")
 def verify_sent_data(context, email):
-    data = context.website.get_sent_data()
-    expect(data).to_contain_text(email)
+    context.website.validate_sent_data(email)

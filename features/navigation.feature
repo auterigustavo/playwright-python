@@ -2,7 +2,7 @@ Feature: Prueba DemoQa
 
     @prueba
     Scenario: Ingresar datos en un formulario
-        Given Ingreso a la pagina https://demoqa.com/text-box
+        Given Ingreso a la pagina https://demoqa.com/
         When Lleno los campos presentados
         And Hago click en submit
         Then Verifico que el mail gauteri@mail.com coincida
