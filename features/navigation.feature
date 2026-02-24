@@ -1,6 +1,6 @@
-Feature: Prueba DemoQa
+Feature: Prueba UI demoqa
 
-    @prueba
+    @ui
     Scenario: Ingresar datos en un formulario
         Given Ingreso a la pagina https://demoqa.com/
         When Lleno los campos presentados
