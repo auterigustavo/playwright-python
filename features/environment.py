@@ -1,4 +1,5 @@
 from playwright.sync_api import sync_playwright
+from datetime import datetime
 from Config import API_BASE_URL
 
 def before_all(context):
@@ -22,10 +23,27 @@ def after_scenario(context, scenario):
 
     if "ui" in tags:
         if hasattr(context, "browser_context"):
-            context.browser_context.tracing.stop(path='logs/trace.zip')
+            if scenario.status == "failed":
+                screenshot_path = f"logs/{scenario.name}.png"
+                screenshot_path = screenshot_path.replace(" ", "_")
+                context.page.screenshot(path=screenshot_path)
+
+                #Agrego al reporte html
+                #with open(screenshot_path, "rb") as image_file:
+                #    context.attach(
+                #        image_file.read(),
+                #        "image/png"
+                #    )
+            
+            now = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+            scenario_name = scenario.name
+            scenario_name = scenario_name.replace(" ", "_")
+            path = f"logs/{scenario_name}_{now}.zip"
+            context.browser_context.tracing.stop(path=path)
     
         if hasattr(context, "browser"):
             context.browser.close()
+
 
     if "api" in tags:
         context.api.dispose()
